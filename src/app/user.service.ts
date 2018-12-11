@@ -8,6 +8,7 @@ export interface User {
   name: string;
 }
 
+// @Injectable标记其可以依赖注入
 @Injectable({
   providedIn: 'root'
 })

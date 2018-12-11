@@ -18,7 +18,8 @@ export class LoginComponent {
 
   login() {
     // 发送请求
-    this.userService.login(this.model).subscribe(
+    // 返回的结果是Observable对象
+    return this.userService.login(this.model).subscribe(
       (result: Result<User>) => {
         if (result.success) {
           alert('登陆成功！');

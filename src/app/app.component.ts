@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 // 具名导入
 import Student, {HOST as host, add, Foo, Bar, ooxx} from './myModule';
 
@@ -116,13 +116,34 @@ class Dog extends Animal {
     super.move(distance); // 使用super.xx访问父类成员
   }
 
+  // 方法重载
+  eat(food: string): string;
+  eat(food: { name: string, amount: number }): { canEat: boolean, msg: string };
+  eat(food: string | { name: string, amount: number }): any {
+    if (typeof food === 'string') {// 方法一的实现
+      return food === 'bone';
+    } else {// 方法二的实现
+      const canEat = food.name === 'bone' && food.amount < 3;
+      let msg = '';
+      if (food.name !== 'bone') {
+        msg += '我只吃骨头！';
+      }
+      if (food.amount >= 3) {
+        msg += '我只吃两根！';
+      }
+      return {canEat, msg};
+    }
+  }
 }
 
 const dog = new Dog('汪星人', 2);
 
 dog.bark();
 dog.move();
-
+console.log(dog.eat('bone')); // true
+console.log(dog.eat('bone1')); // false
+console.log(dog.eat({name: 'bone', amount: 2})); // {canEat: true, msg: ""}
+console.log(dog.eat({name: 'bone1', amount: 3})); // {canEat: false, msg: "我只吃骨头！我只吃两根！"}
 
 interface Point {
   x: number;
@@ -165,7 +186,7 @@ e.fullName = 'James Harden';
 console.log(e.fullName);
 
 // 函数参数必要性
-function buildName(first: string = 'James', last?: string ) {
+function buildName(first: string = 'James', last?: string) {
   return first + last;
 }
 
@@ -201,7 +222,7 @@ useGeneric<string>('myString'); // myString
 useGeneric({length: 1, other: 'bla'}); // 1
 
 // 泛型接口
-interface Result<T, U> {
+interface Result2<T, U> {
   success: boolean;
   data?: T;
   message?: U;
@@ -226,8 +247,6 @@ class Result<T> {
 const r2: Result<User> = new Result<User>(true, {id: 1, name: 'tom'});
 console.log(r2.success);
 console.log(r2.data);
-
-
 
 @Component({
   selector: 'app-root',
