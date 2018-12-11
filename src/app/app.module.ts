@@ -17,7 +17,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ // 声明组件
+  declarations: [ // 声明组件,才能正常使用组件（ide自动添加）
     AppComponent,
     LoginComponent,
     RegisterComponent
