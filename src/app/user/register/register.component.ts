@@ -23,6 +23,7 @@ export class RegisterComponent implements OnInit {
     this.getCodeImg();
   }
 
+
   getCodeImg() {
     this.userService.getCodeImg().subscribe(
       (result: Result<string>) => {
