@@ -169,6 +169,8 @@ console.log(grid.distance({x: 3, y: 4}));
 
 // 存储器
 class Employee {
+  // 作用一：封装局部变量
+  // 作用二：额外逻辑处理
   private _fullName: string;
 
   get fullName(): string {

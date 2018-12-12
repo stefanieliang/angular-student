@@ -3,31 +3,17 @@ import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {LoginComponent} from './login/login.component';
-import {RegisterComponent} from './register/register.component';
-import {RouterModule, Routes} from '@angular/router';
-import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-
-
-// 配置路由
-const routes: Routes = [
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
-];
+import {UserModule} from './user/user.module';
 
 @NgModule({
-  declarations: [ // 声明组件,才能正常使用组件（ide自动添加）
+  declarations: [ // 声明组件|管道|指令,才能正常使用组件（ide自动添加）
     AppComponent,
-    LoginComponent,
-    RegisterComponent
   ],
-  imports: [
+  imports: [ // 导入ng模块
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule,
-    FormsModule, // 使用模板驱动表单
-    RouterModule.forRoot(routes),
+    UserModule,
     AppRoutingModule
   ],
   providers: [],

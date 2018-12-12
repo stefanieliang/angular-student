@@ -1,7 +1,12 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
-const routes: Routes = [];
+// 配置路由
+const routes: Routes = [
+    // {path: '**', component: NotFoundComponent}, // ** 通配符
+  {path: '**', redirectTo: '/user/login'}, // redirectTo后为真实的url地址
+  {path: '', pathMatch: 'full', redirectTo: '/user/login'}, // ' '表示根路径，必须有pathMatch: 'full'配置项
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
