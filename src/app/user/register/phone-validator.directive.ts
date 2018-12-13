@@ -1,5 +1,5 @@
 import {Directive} from '@angular/core';
-import {AbstractControl, AsyncValidator, NG_ASYNC_VALIDATORS, ValidationErrors} from '@angular/forms';
+import {AbstractControl, NG_ASYNC_VALIDATORS, ValidationErrors} from '@angular/forms';
 import {Observable, of} from 'rxjs';
 import {UserService} from '../user.service';
 import {Result} from '../../common/result';
@@ -7,14 +7,14 @@ import {catchError, map} from 'rxjs/operators';
 
 // @Directive 指令装饰器
 @Directive({
-  selector: '[appPhoneValidater]', // 属性选择器
+  selector: '[appPhoneValidator]', // 属性选择器
   // providers 确定创建的指令添加到哪个模块集合中去
   providers: [
     // 系统想要使用自定义的异步校验器需加此行
-    {provide: NG_ASYNC_VALIDATORS, useExisting: PhoneValidaterDirective, multi: true}
+    {provide: NG_ASYNC_VALIDATORS, useExisting: PhoneValidatorDirective, multi: true}
   ]
 })
-export class PhoneValidaterDirective {
+export class PhoneValidatorDirective {
 
   constructor(private userService: UserService) {
   }

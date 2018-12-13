@@ -5,6 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import {UserModule} from './user/user.module';
+import {RxjsModule} from './rxjs/rxjs.module';
 
 @NgModule({
   declarations: [ // 声明组件|管道|指令,才能正常使用组件（ide自动添加）
@@ -14,6 +15,7 @@ import {UserModule} from './user/user.module';
     BrowserModule,
     HttpClientModule,
     UserModule,
+    RxjsModule,
     AppRoutingModule
   ],
   providers: [],

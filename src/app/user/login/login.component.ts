@@ -20,16 +20,12 @@ export class LoginComponent {
     // 发送请求
     // 返回的结果是Observable对象
     return this.userService.login(this.model).subscribe(
-      (result: Result<User>) => {
-        if (result.success) {
+      (result: boolean) => {
+        if (result) {
           alert('登陆成功！');
         } else {
           alert('登录失败！');
         }
-      },
-      (error) => {
-        console.log(error);
-        alert('登录失败');
       }
     );
   }
