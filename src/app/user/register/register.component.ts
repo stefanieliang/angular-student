@@ -4,6 +4,7 @@ import {User, UserService} from '../user.service';
 import {Result} from '../../common/result';
 import {scan, take} from 'rxjs/operators';
 import {interval} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,8 @@ export class RegisterComponent implements OnInit {
   isDisabled = false; // 开启禁用短信获取按钮
   bthText = '获取短信验证码'; // 动态按钮文字
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,
+              private router: Router) {
     this.model = new RegisterUser();
   }
 
@@ -66,12 +68,10 @@ export class RegisterComponent implements OnInit {
 
   register() {
     this.userService.register(this.model).subscribe(
-      (result: Result<User>) => {
-        console.log(result)
-        if (result.success) {
+      (result: boolean) => {
+        if (result) {
           // 注册成功，跳转主页
-
-          alert('注册成功');
+          this.router.navigate(['/main']);
         } else {
           alert('注册失败');
         }

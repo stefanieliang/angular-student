@@ -6,16 +6,19 @@ import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import {UserModule} from './user/user.module';
 import {RxjsModule} from './rxjs/rxjs.module';
+import { HomeComponent } from './home/home.component';
+import {MainModule} from './main/main.module';
 
 @NgModule({
   declarations: [ // 声明组件|管道|指令,才能正常使用组件（ide自动添加）
-    AppComponent,
+    AppComponent, HomeComponent,
   ],
-  imports: [ // 导入ng模块
+  imports: [ // 导入ng模块，需要手动导入
     BrowserModule,
     HttpClientModule,
     UserModule,
     RxjsModule,
+    MainModule,
     AppRoutingModule
   ],
   providers: [],

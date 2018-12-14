@@ -27,16 +27,20 @@ export class UserService {
   login(user: LoginUser) {
     // 返回的结果是observable对象
     return this.http.post<Result<User>>(this.url + 'login', user).pipe(
-      map((r: Result<User>) => {
-        if (r.success) {
-          this.user = r.data;
-          return true;
-        } else {
-          return false;
-        }
-      }),
+      map(this.handelLogin),
       catchError(error => of(false))
     );
+  }
+
+  private handelLogin(r: Result<User>) {
+    if (r.success) {
+      // 缓存用户信息
+      this.user = r.data;
+      // 登陆成功
+      return true;
+    } else {
+      return false;
+    }
   }
 
   // 注册-校验手机号是否已存在
@@ -61,9 +65,20 @@ export class UserService {
 
   // 注册方法
   register(user: RegisterUser) {
-    return this.http.post(this.url + 'register', {
+    return this.http.post<Result<User>>(this.url + 'register', {
       phone: user.phone,
       password: user.password
-    });
+    }).pipe(
+      map(this.handelLogin),
+      catchError(error => of(false))
+    );
+  }
+
+  // 判断当前用户是否登录
+  isLogin() {
+    return this.http.get<Result<User>>(this.url + 'is-login').pipe(
+      map(this.handelLogin),
+      catchError(error => of(false))
+    );
   }
 }
