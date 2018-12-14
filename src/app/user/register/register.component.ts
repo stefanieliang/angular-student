@@ -70,6 +70,7 @@ export class RegisterComponent implements OnInit {
         console.log(result)
         if (result.success) {
           // 注册成功，跳转主页
+
           alert('注册成功');
         } else {
           alert('注册失败');
