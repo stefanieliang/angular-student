@@ -8,7 +8,8 @@ import {RegisterUser} from './register/register-user';
 
 export interface User {
   id: number;
-  name: string;
+  username: string;
+  avatar?:string;
 }
 
 // @Injectable标记其可以依赖注入，是单例模式，可将公共数据存入此中

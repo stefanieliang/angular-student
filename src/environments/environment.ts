@@ -5,6 +5,7 @@
 export const environment = {
   production: false
 };
+export const avatarSrc = '/images/';
 
 /*
  * For easier debugging in development mode, you can import the following file
