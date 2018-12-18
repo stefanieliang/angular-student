@@ -27,7 +27,7 @@ export class UserService {
   login(user: LoginUser) {
     // 返回的结果是observable对象
     return this.http.post<Result<User>>(this.url + 'login', user).pipe(
-      map(this.handelLogin),
+      map(this.handelLogin.bind(this)), // 绑定上下文
       catchError(error => of(false))
     );
   }
@@ -69,7 +69,7 @@ export class UserService {
       phone: user.phone,
       password: user.password
     }).pipe(
-      map(this.handelLogin),
+      map(this.handelLogin.bind(this)), // 绑定上下文
       catchError(error => of(false))
     );
   }
@@ -77,8 +77,22 @@ export class UserService {
   // 判断当前用户是否登录
   isLogin() {
     return this.http.get<Result<User>>(this.url + 'is-login').pipe(
-      map(this.handelLogin),
+      map(this.handelLogin.bind(this)), // 绑定上下文
       catchError(error => of(false))
+    );
+  }
+
+  // 注销
+  logout() {
+    return this.http.post(this.url + 'layout', null).pipe(
+      map((result: Result<null>) => {
+        if (result.success) {
+          this.user = null;
+          return true;
+        } else {
+          return false;
+        }
+      })
     );
   }
 }
